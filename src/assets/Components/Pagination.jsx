@@ -1,21 +1,12 @@
-import{ useEffect } from 'react';
 
-const Pagination = ({ page, setPage, totalPages, next, previous, filtros, order, fetchPets }) => {
-  useEffect(() => {
-    setPage(1);
-    fetchPets(1, order);
-  }, [filtros]);
 
-  const handleChangePage = (newPage) => {
-    setPage(newPage);
-    fetchPets(newPage, order);
-  };
+const Pagination = ({ page, setPage, totalPages }) => {
 
   return (
     <>
       <ul className="pagination">
-        <li className={`page-item ${page === 1 ? "disabled" : ""}`}>
-          <button className="page-link" onClick={() => handleChangePage(page - 1)} disabled={page === 1}>Anterior</button>
+        <li className={`page-item ${page === totalPages ? "disabled" : ""}`}>
+          <button className="page-link" onClick={() => setPage((p) => p - 1)}disabled={page === 1}>Anterior</button>
         </li>
         {[...Array(totalPages)].map((_, i) => (
           <li key={i} className={`page-item ${page === i + 1 ? "active" : ""}`}>
@@ -23,11 +14,11 @@ const Pagination = ({ page, setPage, totalPages, next, previous, filtros, order,
           </li>
         ))}
         <li className={`page-item ${page === totalPages ? "disabled" : ""}`}>
-          <button className="page-link" onClick={() => handleChangePage(page + 1)} disabled={page === totalPages}>Siguiente</button>
+          <button className="page-link" onClick={() => setPage((p) => p + 1)} disabled={page === totalPages}>Siguiente</button>
         </li>
       </ul>
-    </>
-  );
+    </> 
+  );  
 };
 
 export default Pagination;

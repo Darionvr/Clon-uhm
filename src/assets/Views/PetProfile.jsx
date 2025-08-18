@@ -67,7 +67,7 @@ const PetProfile = () => {
   return (
     <main className='pet-main'>
       <div className="pet-photo">
-        <img src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${animal.photo}`} alt={`Foto de ${animal.name}`} />
+        <img src={animal.photo} alt={`Foto de ${animal.name}`} />
 
       </div>
       <div className="pet-info">

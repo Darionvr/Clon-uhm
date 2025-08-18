@@ -11,50 +11,28 @@ const Myprofile = () => {
   const { currentUser, setCurrentUser, token } = useContext(UserContext);
   const decoded = jwtDecode(token);
 
-
-  
-  const [datosModificados, setDatosModificados] = useState({})
-  const [editMode, setEditMode] = useState({
-    first_name: false,
-    last_name: false,
-    email: false,
-    button: false
+  const [misDatos, setMisDatos] = useState({
+    first_name: currentUser.first_name || '',
+    last_name: currentUser.last_name || '',
+    email: currentUser.email || '',
+    rut: currentUser.rut || '',
   });
 
-  const [tempValues, setTempValues] = useState({});
-  const camposEditables = ["first_name", "last_name", "email"];
-  const hayEdicionActiva = Object.values(editMode).some((estado) => estado === true);
-  const hayCambiosPendientes = Object.keys(datosModificados).length > 0;
+
+  const [editandoCampo, setEditandoCampo] = useState(null);
+  const [valorTemporal, setValorTemporal] = useState('');
 
 
-
-  const handleEditClick = (field) => {
-    setEditMode(prev => ({ ...prev, [field]: true }));
-    setTempValues(prev => ({ ...prev, [field]: currentUser[field] }));
+  const iniciarEdicion = (campo) => {
+    setEditandoCampo(campo);
+    setValorTemporal(misDatos[campo]);
   };
 
-  const handleInputChange = (field, value) => {
-    setTempValues(prev => ({ ...prev, [field]: value }));
-    setDatosModificados(prev => ({ ...prev, [field]: value }));
+  const cancelarEdicion = () => {
+    setEditandoCampo(null);
+    setValorTemporal('');
   };
 
-  const handleConfirmEdit = (field) => {
-    setEditMode(prev => ({ ...prev, [field]: false }));
-  };
-
-  const handleCancelEdit = (field) => {
-    setEditMode(prev => ({ ...prev, [field]: false }));
-    setTempValues(prev => {
-      const updated = { ...prev };
-      delete updated[field];
-      return updated;
-    });
-    setDatosModificados(prev => {
-      const updated = { ...prev };
-      delete updated[field];
-      return updated;
-    });
-  };
 
 
   const handleSubmit = async () => {
@@ -65,7 +43,7 @@ const Myprofile = () => {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(datosModificados),
+        body: JSON.stringify(misDatos),
       });
 
       const result = await response.json();
@@ -73,77 +51,69 @@ const Myprofile = () => {
         console.error("Error al actualizar:", result.message);
         return;
       }
-      setCurrentUser(result.user);
-      setEditMode({ first_name: false, last_name: false, email: false });
-      setTempValues({});
-      setDatosModificados({});
+
     } catch (error) {
       console.error("Error al actualizar datos:", error);
     }
   };
 
+
+  const confirmarEdicion = () => {
+    setMisDatos((prev) => ({ ...prev, [editandoCampo]: valorTemporal }));
+    handleSubmit();
+    setEditandoCampo(null);
+  };
+
+  const renderCampo = (label, campo) => (
+    <div>
+      <label>{label}:</label>
+      {editandoCampo === campo ? (
+        <>
+          <input
+            type="text"
+            value={valorTemporal}
+            onChange={(e) => setValorTemporal(e.target.value)}
+          />
+          <div>
+          <button className='edit-button' onClick={confirmarEdicion}>OK</button>
+          <button className='edit-button' onClick={cancelarEdicion}>Cancelar</button>
+        </div>
+        </>
+      ) : (
+        <>
+          <p>{misDatos[campo]}</p>
+          <button className='edit-button' onClick={() => iniciarEdicion(campo)}>Editar</button>
+        </>
+      )}
+    </div>
+  );
+
   return (
     <>
 
       <main className='profile-main'>
-
         <div className="MyProfile">
           <h1> Mi perfil</h1>
-
-          <div className="ProfileSection">
-            <div className="ProfilePicture">
-              <img src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${currentUser.photo}`}
-                className="ProfileImage" />
-
+          <div className="profileSection">
+            <div className="profilePicture">
+              <img src={currentUser.photo}
+                className="profileImage" />
             </div>
-
-            <div className="ProfileInfo">
-              {camposEditables.map((field) => (
-                <div className="Info" key={field}>
-                  {editMode[field] ? (
-                    <>
-                      <input
-                        type="text"
-                        defaultValue={tempValues[field] || ""}
-                        onChange={(e) => handleInputChange(field, e.target.value)}
-                      />
-                      <button className='edit-button' onClick={() => handleConfirmEdit(field)}><FontAwesomeIcon icon={faCheck} /> OK</button>
-                      <button className='edit-button' onClick={() => handleCancelEdit(field)}> <FontAwesomeIcon icon={faXmark} />Cancelar</button>
-                    </>
-                  ) : (
-                    <>
-                      <span>{tempValues[field] ?? currentUser[field]}</span>
-                      <button className='edit-button' onClick={() => handleEditClick(field)}> <FontAwesomeIcon icon={faPencil} /> editar</button>
-                    </>
-                  )}
-                </div>
-              ))}
-
-              <div className="Info">
-                <span>{currentUser.rut}</span>
+            <div className="profile-info">
+              {renderCampo('Nombre', 'first_name')}
+              {renderCampo('Apellido', 'last_name')}
+              {renderCampo('Email', 'email')}
+              <div>
+                <label>Rut</label>
+                <p>{currentUser.rut}</p>
               </div>
-              {hayCambiosPendientes && (
-                <button className='melon-button' onClick={handleSubmit}>Guardar cambios</button>)}
             </div>
-
-
-
           </div>
-
         </div>
-
-
         {decoded.role === 'administrador' && <TableSuperUser />}
-
         <Mypost />
-
-
-
       </main>
-
-
     </>
-
   );
 };
 

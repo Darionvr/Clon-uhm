@@ -30,7 +30,6 @@ const UserProvider = ({ children }) => {
 
 
         const validateToken = async () => {
-
             try {
                 const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/me`, {
                     headers: { Authorization: `Bearer ${token}` },
@@ -103,7 +102,7 @@ const UserProvider = ({ children }) => {
             });
 
             const data = await response.json();
-            console.log("Respuesta del registro:", data);
+          
 
             if (!response.ok) {
                 console.error("Registro fallido:", data.message);

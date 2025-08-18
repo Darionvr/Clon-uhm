@@ -3,35 +3,15 @@ import { faFileCirclePlus, faPenToSquare } from '@fortawesome/free-solid-svg-ico
 import { Link } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../Context/UserContext'
+import PetCard from '../Components/PetCard';
+
 
 
 const Mypost = () => {
 
     const { token } = useContext(UserContext);
     const [myPets, setMyPets] = useState([])
-    const ageMap = {
-        0.25: '3 meses',
-        0.33: '4 meses',
-        0.41: '5 meses',
-        0.5: '6 meses',
-        0.58: '7 meses',
-        0.67: '8 meses',
-        0.75: '9 meses',
-        0.83: '10 meses',
-        0.91: '11 meses',
-        1: '1 año',
-        2: '2 años',
-        3: '3 años',
-        4: '4 años',
-        5: '5 años',
-        6: '6 años',
-        7: '7 años',
-        8: '8 años',
-        9: '9 años',
-        10: '10+ años'
-    };
-
-
+    
     const findMyPets = async (token) => {
         try {
             const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/pets/myPets`, {
@@ -77,19 +57,17 @@ const Mypost = () => {
                 ) : (
 
                     <div className="card-list">
-                        {myPets.map(pet => (
-                            <Link className='card-link' key={pet.id} to={`/petProfile/${pet.id}`}>
-                                <div className="card" >
-                                    <div className="img">
-                                        <img src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${pet.photo}`} alt="Mascota" />
-                                    </div>
-
-                                    <div className="cardInfo">
-                                        <h3>{pet.name}</h3>
-                                        <p>{pet.specie}, {ageMap[pet.age] || pet.age}</p>
-                                    </div>
-                                </div>
-                            </Link>
+                        {myPets.map((pet, i) => (
+                            <PetCard
+                                key={i}
+                                id={pet.id}
+                                photo={pet.photo}
+                                name={pet.name}
+                                gender={pet.gender}
+                                age={pet.age}
+                                weight={pet.weight}
+                                deletePets={null}
+                            />
 
                         ))}
                     </div>

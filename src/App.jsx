@@ -19,7 +19,7 @@ function App() {
 
   const { token, loading } = useContext(UserContext)
 
-if (loading) return <p>Cargando...</p>;
+  if (loading) return <p>Cargando...</p>;
 
 
   return (
@@ -65,7 +65,7 @@ if (loading) return <p>Cargando...</p>;
         />
         <Route
           path="*"
-          element={<NotFound/>}
+          element={<NotFound />}
         />
       </Routes>
       <Footer />

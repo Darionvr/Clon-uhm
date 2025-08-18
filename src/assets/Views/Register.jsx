@@ -26,7 +26,6 @@ const Register = () => {
 
   const fileInputRef = useRef(null);
 
-
   const handleSubmit = async (e) => {
     e.preventDefault()
 
