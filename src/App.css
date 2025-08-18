@@ -488,9 +488,7 @@ footer {
   gap: 1rem;
 }
 
-.create-post-form-container input,
-select,
-textarea {
+.create-post-form-container >  input, .create-post-form-container > select, .create-post-form-container >textarea {
   font-family: "Lexend", sans-serif;
   gap: 30px;
   padding: 12px;
@@ -559,7 +557,7 @@ textarea {
 
 
 
-/************************** ADOPTIONFORM **************************/
+/************************** AdoptionGuide **************************/
 
 
 .adoption-main {
@@ -633,114 +631,6 @@ textarea {
   font-size: 40px;
 }
 
-.slideAdoption h3 {
-  text-align: center;
-  font-size: 28px;
-  margin-bottom: 1rem;
-}
-
-.form-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 16px;
-  padding: 2rem;
-  box-sizing: border-box;
-
-}
-
-.form-grid select {
-  padding: 10px;
-  border: 1px solid 555;
-  border-radius: 8px;
-  outline: none;
-  transition: border 0.2s ease-in-out;
-  background-color: var(--PaleDogwood);
-}
-
-.form-grid input {
-  background-color: var(--PaleDogwood);
-  gap: 30px;
-  padding: 12px;
-  border: none var(--ChampagnePink);
-  border-radius: 10px;
-  font-family: Lexend;
-
-}
-
-
-.form-grid input:focus,
-.form-grid select:focus {
-  border-color: #555;
-}
-
-.slideAdoption form label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
-  font-size: 16px;
-}
-
-.carousel-container {
-  overflow: hidden;
-  max-width: 900px;
-  background-color: var(--Seashell);
-  border-radius: 10px;
-  margin: auto;
-
-
-}
-
-.slides-wrapper {
-  display: flex;
-  transition: transform 0.4s ease-in-out;
-  box-sizing: border-box;
-  margin: 0;
-  gap: 0;
-
-}
-
-.slideAdoption {
-  width: 100%;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin: 0;
-
-}
-
-.submit-form {
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-
-.carousel-dots {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
-  padding: 2rem;
-  width: min-content;
-  margin: auto;
-}
-
-.carousel-dots .dot {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  border: none;
-  background-color: #ccc;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.carousel-dots .dot.active {
-  background-color: black;
-}
 
 
 /***************************AdoptionList***************************/
@@ -775,10 +665,12 @@ textarea {
   cursor: pointer;
   font-family: "Lexend", sans-serif;
   color: var(--PrimaryText);
+
 }
 
 .filter option {
   color: var(--PrimaryText);
+
 }
 
 
@@ -816,11 +708,12 @@ textarea {
     opacity: 1;
 
   }
-  .melon-button{
+
+  .melon-button {
     background-color: var(--Melon);
     margin: auto;
     color: white;
-   
+
   }
 }
 
@@ -880,7 +773,7 @@ textarea {
 
 
 .page-item {
- 
+
   button {
     font-family: Lexend;
   }
@@ -1231,13 +1124,13 @@ textarea {
 
 }
 
-.MyProfile .card::before {
+.my-profile .card::before {
   content: none;
 
 }
 
 
-.MyProfile,
+.my-profile,
 .my-posts {
   background-color: white;
   padding: 2rem;
@@ -1249,8 +1142,8 @@ textarea {
   font-size: 1.8rem;
 }
 
-.my-posts .card{
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+.my-posts .card {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
 }
 
@@ -1258,14 +1151,14 @@ textarea {
   display: block;
 }
 
-.profileSection {
+.profile-section {
   display: flex;
   gap: 25px;
   align-items: start;
   flex-wrap: wrap;
 }
 
-.profilePicture {
+.profile-picture {
   width: 150px;
   height: 150px;
   border-radius: 50%;
@@ -1273,7 +1166,7 @@ textarea {
   border: 3px solid var(--ChampagnePink);
 }
 
-.profileImage {
+.profile-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -1286,19 +1179,19 @@ textarea {
 
 }
 
-.profile-info > div{
+.profile-info>div {
   display: grid;
   align-items: center;
   grid-template-columns: 80px 1fr auto;
   gap: 1rem;
-  
-  div{
+
+  div {
     display: flex;
   }
 }
 
 
-.profile-info > div >input {
+.profile-info>div>input {
   background-color: #f1f1f1;
   gap: 30px;
   padding: 12px;
@@ -1343,7 +1236,7 @@ textarea {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 300px));
   gap: 1rem;
-  
+
 }
 
 .card-request {
@@ -1369,10 +1262,11 @@ textarea {
 }
 
 
-.card-info > p{
-font-weight: bold;
+.card-info>p {
+  font-weight: bold;
 }
-.card-info > p span{
+
+.card-info>p span {
   color: var(--SecondaryText);
   font-weight: 400;
 }
@@ -1403,7 +1297,7 @@ font-weight: bold;
 
 /******************* 404 *************************/
 
-.notfound-container{
+.notfound-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1411,24 +1305,25 @@ font-weight: bold;
   padding: 2rem;
   text-align: center;
 
-  h1{
+  h1 {
     margin: 0;
     font-size: 5rem;
   }
-  h2{
+
+  h2 {
     margin: 0;
   }
 
 
 }
 
-.notfound-container > div{
+.notfound-container>div {
 
   max-width: 404px;
   width: 100%;
 
 }
 
-.notfound-container img{
+.notfound-container img {
   width: 100%;
 }

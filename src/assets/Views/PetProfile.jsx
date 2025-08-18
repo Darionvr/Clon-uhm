@@ -80,7 +80,7 @@ const PetProfile = () => {
         }[animal.gender?.trim().toLowerCase()] || 'Desconocido'} </span></p>
         <p>Chip: <span>{animal.chip === true ? 'Sí tiene chip' : animal.chip === false ? 'No tiene chip' : 'Desconocido'}</span></p>
         <p>Descripcion: <span>{animal.description} </span> </p>
-        <button className='melon-button'> <Link to={'/adoptionform'}>  Comenzar adopción</Link></button>
+        <button className='melon-button'> <Link to={'/adoptionGuide'}>  Comenzar adopción</Link></button>
       </div>
     </main>
   )

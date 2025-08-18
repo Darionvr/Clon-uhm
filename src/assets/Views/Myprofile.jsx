@@ -1,6 +1,5 @@
 import { useContext, useState } from 'react';
 import { UserContext } from '../Context/UserContext';
-import TableSuperUser from '../Components/TableSuperUser';
 import Mypost from '../Components/MyPost';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faXmark, faPencil } from '@fortawesome/free-solid-svg-icons';
@@ -82,7 +81,7 @@ const Myprofile = () => {
       ) : (
         <>
           <p>{misDatos[campo]}</p>
-          <button className='edit-button' onClick={() => iniciarEdicion(campo)}>Editar</button>
+          <button className='edit-button' onClick={() => iniciarEdicion(campo)}> <FontAwesomeIcon icon={faPencil}/>Editar</button>
         </>
       )}
     </div>
@@ -92,12 +91,12 @@ const Myprofile = () => {
     <>
 
       <main className='profile-main'>
-        <div className="MyProfile">
+        <div className="my-profile">
           <h1> Mi perfil</h1>
-          <div className="profileSection">
-            <div className="profilePicture">
+          <div className="profile-section">
+            <div className="profile-picture">
               <img src={currentUser.photo}
-                className="profileImage" />
+                className="profile-image" />
             </div>
             <div className="profile-info">
               {renderCampo('Nombre', 'first_name')}
@@ -110,7 +109,6 @@ const Myprofile = () => {
             </div>
           </div>
         </div>
-        {decoded.role === 'administrador' && <TableSuperUser />}
         <Mypost />
       </main>
     </>

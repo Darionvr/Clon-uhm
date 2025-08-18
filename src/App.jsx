@@ -5,7 +5,7 @@ import Staff from './assets/Views/Staff';
 import Register from './assets/Views/Register';
 import Myprofile from './assets/Views/Myprofile';
 import AdoptList from './assets/Views/AdoptList';
-import AdoptionForm from './assets/Views/AdoptionForm';
+import AdoptionGuide from './assets/Views/AdoptionGuide';
 import Voluntary from './assets/Views/Voluntary';
 import CreatePost from './assets/Views/CreatePost';
 import Navbar from './assets/Components/Navbar';
@@ -48,8 +48,8 @@ function App() {
           element={<AdoptList />}
         />
         <Route
-          path="/adoptionForm"
-          element={<AdoptionForm />}
+          path="/adoptionguide"
+          element={<AdoptionGuide />}
         />
         <Route
           path="/voluntary"

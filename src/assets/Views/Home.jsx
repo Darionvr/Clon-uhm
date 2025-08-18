@@ -76,7 +76,7 @@ const Home = () => {
               <p>Adoptar suma tu vida un amigo que te acompañará en todo momento, con amor y sin condiciones. </p>
             </div>
           </div>
-          <button className='melon-button'> <Link to={'/adoptionForm'}> Guía paso a paso para adoptar</Link></button>
+          <button className='melon-button'> <Link to={'/adoptionGuide'}> Guía paso a paso para adoptar</Link></button>
 
         </section>
 

@@ -203,11 +203,18 @@
     }
 
     /************************* MY PROFILE *************************/
-    .Info {
+    .profile-info > div {
+        display: flex;
         flex-direction: column;
+        align-items: flex-start;
+        
+        label{
+            display: none;
+        }
+        
     }
 
-    .ProfilePicture {
+    .profile-picture {
         margin: auto;
     }
 
