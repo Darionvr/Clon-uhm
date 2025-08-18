@@ -6,14 +6,12 @@ import Home from './Home'
 import { UserContext } from '../Context/UserContext'
 import { useNavigate } from 'react-router-dom'
 
-
 const Register = () => {
 
   const navigate = useNavigate();
 
   const { register } = useContext(UserContext)
   const [errors, setErrors] = useState({})
-
   const [registerForm, setRegisterForm] = useState({
     first_name: "",
     last_name: "",
@@ -123,7 +121,7 @@ const Register = () => {
             {errors.password2 && <p className='form-error'> <img src="imgs\alert-icon.svg" alt="ícono alerta" />{errors.password2}  </p>}
 
           </div>
-          <div className="input-group" onClick={() => fileInputRef.current && fileInputRef.current.click()}>
+          <div className="input-group-photo" onClick={() => fileInputRef.current && fileInputRef.current.click()}>
             <FontAwesomeIcon icon={faUpload} />
             <input name='photo' type="file" onChange={handleChange} style={{ display: "none" }} ref={fileInputRef} />
             {registerForm.photo ? <span className="file-name">{registerForm.photo.name}</span> : <span> Selecciona tu foto de perfil</span>}

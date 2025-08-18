@@ -18,7 +18,6 @@ const AdoptList = () => {
   const [previous, setPrevious] = useState(null);
   const [filtros, setFiltros] = useState({ size: "", age: "", specie: "" });
 
-  // Inicio
   const getPets = async () => {
     setLoading(true);
     try {
@@ -42,7 +41,6 @@ const AdoptList = () => {
     }
   };
 
-  // Eliminar
   const deletePets = async (id) => {
     try {
       const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/pets/${id}`, {

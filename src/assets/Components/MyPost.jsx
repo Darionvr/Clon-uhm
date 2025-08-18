@@ -29,7 +29,6 @@ const Mypost = () => {
             }
 
             const data = await response.json();
-            console.log(data.results);
             return data
 
         } catch (error) {

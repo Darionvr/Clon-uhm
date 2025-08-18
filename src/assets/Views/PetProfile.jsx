@@ -1,21 +1,55 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { UserContext } from '../Context/UserContext';
+import { jwtDecode } from 'jwt-decode';
+
 
 const PetProfile = () => {
 
   const { id } = useParams();
   const [animal, setAnimal] = useState(null);
+  const { token } = useContext(UserContext)
+const navigate = useNavigate();
 
-  
-  
+  let decoded = null;
+  if (token) {
+    try {
+      decoded = jwtDecode(token);
+    } catch (error) {
+      console.error('Token inválido o corrupto:', error);
+    }
+  }
+  const deletePets = async (id) => {
+    try {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/pets/${id}`, {
+        method: "DELETE",
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
+      })
+      if (res.ok) {
+        navigate('/adoptList');
+      } else {
+        console.log("No se pudo eliminar la mascota");
+      }
+    } catch (error) {
+      console.log('Error al eliminar la mascota', error);
+    }
+  }
+
+
   useEffect(() => {
     const fetchAnimal = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/pets/${id}`);
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/pets/${id}`, {
+          headers: {'Authorization': `Bearer ${token}`}
+        }
+
+        );
         const data = await res.json();
         setAnimal(data);
+    
       } catch (err) {
         console.error('Error al obtener datos del animal:', err);
       }
@@ -26,7 +60,7 @@ const PetProfile = () => {
   }, [id]);
 
   if (!animal) return <main className='pet-main'> <p>Cargando información de la mascota...</p> </main>
-  
+
   const ageMap = {
     0.25: '3 meses',
     0.33: '4 meses',
@@ -81,6 +115,8 @@ const PetProfile = () => {
         <p>Chip: <span>{animal.chip === true ? 'Sí tiene chip' : animal.chip === false ? 'No tiene chip' : 'Desconocido'}</span></p>
         <p>Descripcion: <span>{animal.description} </span> </p>
         <button className='melon-button'> <Link to={'/adoptionGuide'}>  Comenzar adopción</Link></button>
+        {(decoded?.role === 'administrador' || animal.isOwner) && ( <button className='melon-button' onClick={() => deletePets(id)}> Eliminar </button>)}
+
       </div>
     </main>
   )

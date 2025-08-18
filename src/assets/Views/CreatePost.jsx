@@ -11,7 +11,7 @@ const CreatePost = () => {
   const fileInputRef = useRef(null);
   const { token } = useContext(UserContext);
   const navigate = useNavigate();
-
+  const [errors, setErrors] = useState({});
   const [form, setForm] = useState({
     nombre: "",
     especie: "",
@@ -31,20 +31,31 @@ const CreatePost = () => {
       [name]: type === "file" ? files[0] : value
     });
 
+    setErrors({
+      ...errors,
+      [e.target.name]: "",
+    });
+
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      !form.nombre || !form.especie || !form.foto || !form.peso ||
-      !form.edadAprox || !form.chip || !form.sexo || !form.description
-    ) {
-      alert("Todos los campos son obligatorios");
+    let newErrors = {};
+
+    if (!form.nombre) newErrors.nombre = "El nombre es obligatorio";
+    if (!form.especie) newErrors.especie = "La especie es obligatoria";
+    if (!form.foto) newErrors.foto = "La foto es obligatoria";
+    if (!form.peso) newErrors.peso = "El peso es obligatorio";
+    if (!form.edadAprox) newErrors.edadAprox = "La edad aproximada es obligatoria";
+    if (!form.chip) newErrors.chip = "El chip es obligatorio";
+    if (!form.sexo) newErrors.sexo = "El sexo es obligatorio";
+    if (!form.description) newErrors.description = "La descripción es obligatoria";
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
       return;
     }
-
-
 
     const formData = new FormData();
     formData.append("name", form.nombre);
@@ -84,17 +95,31 @@ const CreatePost = () => {
   return (
 
     <main className="create-post-main">
-      <div className="create-post-form-container">
+      <div className="form-container">
         <h1>Crea una nueva publicación</h1>
-        <form onSubmit={handleSubmit} id='createPost'>
-          <div className="information1">
+        <form onSubmit={handleSubmit} id='createPost' className='register-form'>
+          <div className="input-group">
             <input name="nombre" placeholder="Ingresa el nombre" value={form.nombre} onChange={handleChange} />
+            {errors.nombre && (
+              <p className="form-error">
+                <img src="imgs/alert-icon.svg" alt="ícono alerta" /> {errors.nombre}
+              </p>
+            )}
+          </div>
+          <div className="input-group">
             <select name="especie" value={form.especie} onChange={handleChange}>
               <option value="">Especie</option>
               <option value="Perro">Perro</option>
               <option value="Gato">Gato</option>
               <option value="Conejo">Conejo</option>
             </select>
+            {errors.especie && (
+          <p className="form-error">
+            <img src="imgs/alert-icon.svg" alt="ícono alerta" /> {errors.especie}
+          </p>
+        )}
+          </div>
+          <div className="input-group">
             <select name="edadAprox" value={form.edadAprox} onChange={handleChange}>
               <option value="">Ingresa edad aprox</option>
               <option value="0.25">3 meses</option>
@@ -117,10 +142,15 @@ const CreatePost = () => {
               <option value="9">9 años</option>
               <option value="10">Más de 10 años</option>
             </select>
+            {errors.edadAprox && (
+          <p className="form-error">
+            <img src="imgs/alert-icon.svg" alt="ícono alerta" /> {errors.edadAprox}
+          </p>
+        )}
           </div>
 
-          <div className="information2">
 
+          <div className="input-group" >
             <select name="peso" placeholder="Ingresa el peso" value={form.peso} onChange={handleChange}>
               <option value="">Ingresa peso aprox</option>
               <option value="0.8">800 gr</option>
@@ -136,19 +166,39 @@ const CreatePost = () => {
               <option value="9">9 kg</option>
               <option value="10">Más de 10 kg</option>
             </select>
+            {errors.peso && (
+          <p className="form-error">
+            <img src="imgs/alert-icon.svg" alt="ícono alerta" /> {errors.peso}
+          </p>
+        )}
+          </div>
+          <div className="input-group" >
             <select name="sexo" value={form.sexo} onChange={handleChange}>
               <option value="">Sexo de la mascota</option>
               <option value="Macho">Macho</option>
               <option value="Hembra">Hembra</option>
             </select>
+            {errors.sexo && (
+          <p className="form-error">
+            <img src="imgs/alert-icon.svg" alt="ícono alerta" /> {errors.sexo}
+          </p>
+        )}
+          </div>
+          <div className="input-group">
             <select name="chip" value={form.chip} onChange={handleChange}>
               <option value="">¿Tiene chip?</option>
               <option value="Sí">Sí</option>
               <option value="No">No</option>
             </select>
+            {errors.chip && (
+          <p className="form-error">
+            <img src="imgs/alert-icon.svg" alt="ícono alerta" /> {errors.chip}
+          </p>
+        )}
           </div>
 
-          <div className="photo" onClick={() => inputphoto.current?.click()}>
+          <div className="input-group-photo" onClick={() => inputphoto.current?.click()}>
+            <FontAwesomeIcon icon={faUpload} />
             <input
               type="file"
               name="foto"
@@ -156,34 +206,41 @@ const CreatePost = () => {
               onChange={handleChange}
               style={{ display: "none" }}
             />
-            <FontAwesomeIcon icon={faUpload} />
             {form.foto ? (
               <span className="file-name">{form.foto.name}</span>
             ) : (
               <span>Selecciona tu foto de perfil</span>
             )}
+            {errors.foto && (
+          <p className="form-error">
+            <img src="imgs/alert-icon.svg" alt="ícono alerta" /> {errors.foto}
+          </p>
+        )}
           </div>
 
-          <div className="description">
-            <label>Descripción</label>
+          <div className="input-group">
             <textarea
-              className="textareaCp"
               placeholder="Por favor detalle el comportamiento del animal..."
               value={form.description}
               name="description"
               onChange={handleChange}
             ></textarea>
+            {errors.description && (
+          <p className="form-error">
+            <img src="imgs/alert-icon.svg" alt="ícono alerta" /> {errors.description}
+          </p>
+        )}
           </div>
 
           <button type="submit" className='melon-button'>
             <FontAwesomeIcon icon={faUpload} /> Publicar mascota
           </button>
         </form>
-      </div>
+      </div >
       <div className="create-post-photo">
         <img src="imgs/create-post-frame.png" alt="" />
       </div>
-    </main>
+    </main >
   );
 };
 
