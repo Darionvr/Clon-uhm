@@ -570,15 +570,19 @@ footer {
 
 
 /***************************AdoptionList***************************/
-.AdopListBody {
+.main-adopt-list{
+  background: linear-gradient(135deg, var(--ChampagnePink), var(--Melon));
+  padding: 4rem 10vw;
+}
+
+.adopt-list-body {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 2rem;
-  padding: 4rem 10vw;
   box-sizing: border-box;
-  background: linear-gradient(135deg, var(--ChampagnePink), var(--Melon));
-
+  max-width: 900px;
+  margin: auto;
   h1 {
     margin: 0;
 
@@ -593,11 +597,10 @@ footer {
 }
 
 .filtrer select {
-  padding: 8px 15px;
-  font-size: 15px;
+  padding: .7rem;
   border: none;
-  border-radius: 8px;
-  max-width: 200px;
+  border-radius: 10px;
+  max-width: 100%;
   cursor: pointer;
   font-family: "Lexend", sans-serif;
   color: var(--PrimaryText);
@@ -606,14 +609,12 @@ footer {
 
 .filter option {
   color: var(--PrimaryText);
-
 }
-
 
 
 .card-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 200px);
+  grid-template-columns: repeat(auto-fill, calc((100% - 6rem) / 4));
   gap: 2rem;
   margin: auto;
   width: 100%;
@@ -624,7 +625,7 @@ footer {
   display: flex;
   flex: 1 1 140px;
   flex-direction: column;
-  position: relative;
+  position: relative; 
   border-radius: 15px;
   cursor: pointer;
   background-color: #FFFFFF;
@@ -636,20 +637,17 @@ footer {
   box-sizing: border-box;
 
   span {
-    color: #555;
+    color: var(--SecondaryText)
   }
-
 
   &:hover::before {
     opacity: 1;
-
   }
 
   .melon-button {
     background-color: var(--Melon);
     margin: auto;
     color: white;
-
   }
 }
 
@@ -663,9 +661,7 @@ footer {
   pointer-events: none;
 }
 
-
-
-.img img {
+.card-img img {
   width: 100%;
   height: 185px;
   object-fit: cover;
@@ -673,20 +669,17 @@ footer {
   border-radius: 15px;
 }
 
-
-.cardInfo {
-  padding: 20px;
+.card-info {
+  padding: 1rem;
 }
 
-.cardInfo h3 {
-  margin-bottom: 10px;
+.card-info h3 {
   color: color(srgb 0.94 0.536364 0.46);
   text-transform: capitalize;
 }
 
-.cardInfo p {
-  margin: 2px 0;
-  font-size: 15px;
+.card-info p {
+  margin: 0;
 }
 
 .pagination-container {
@@ -696,7 +689,6 @@ footer {
   margin: auto;
   border-radius: 15px;
   padding: 0 .5rem;
-
 }
 
 .pagination {
@@ -1044,11 +1036,7 @@ footer {
 }
 
 
-
-
-
-
-/*******************MYPROFILE****************************/
+/****************************MYPROFILE****************************/
 
 .profile-main {
   display: flex;
@@ -1166,71 +1154,6 @@ footer {
   text-align: center;
 }
 
-/*******************TABLESUPERUSER*************************/
-
-
-.cards-wrapper {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 300px));
-  gap: 1rem;
-
-}
-
-.card-request {
-  width: 100%;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  background-color: white;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 1rem;
-  box-sizing: border-box;
-}
-
-.card-title {
-  display: flex;
-  justify-content: center;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  font-weight: bold;
-}
-
-
-.card-info>p {
-  font-weight: bold;
-}
-
-.card-info>p span {
-  color: var(--SecondaryText);
-  font-weight: 400;
-}
-
-
-.card-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-}
-
-.btn-confirm,
-.btn-reject {
-  font-size: 20px;
-  padding: 6px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.btn-confirm {
-  background-color: #d4f4d7;
-}
-
-.btn-reject {
-  background-color: #ffd6d6;
-}
 
 /******************* 404 *************************/
 

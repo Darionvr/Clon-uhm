@@ -56,10 +56,10 @@ const PetCard = ({ id, photo, name, gender, age, weight, deletePets }) => {
     return (
         <div className='card'>
             <Link to={`/petProfile/${id}`} >
-                <div className='img'>
+                <div className='card-img'>
                     <img src={photo} alt={name} />
                 </div>
-                <div className='cardInfo'>
+                <div className='card-info'>
                     <h3>{name}</h3>
                     <p>Sexo: <span>{gender}</span></p>
                     <p>Edad: <span>{ageMap[age]}</span></p>
