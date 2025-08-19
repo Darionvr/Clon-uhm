@@ -316,10 +316,12 @@
     }
 
     /************************* ADOPT LIST  *************************/
-    .adopt-list-body {
-        padding: 1rem;
-    }
 
+    .main-adopt-list{
+        padding: 1rem;
+
+    }
+  
     .filtrer {
         display: flex;
         flex-direction: column;
