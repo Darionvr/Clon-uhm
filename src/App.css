@@ -952,6 +952,8 @@ footer {
     border: none var(--ChampagnePink);
     border-radius: 10px;
     font-size: 14px;
+        font-family: "Lexend", sans-serif;
+
   }
 
   button {
@@ -968,6 +970,12 @@ footer {
       background-color: var(--ChampagnePink);
 
     }
+  }
+
+  textarea{
+    border: none;
+    border-radius: 10px;
+    padding: 1rem;
   }
 }
 

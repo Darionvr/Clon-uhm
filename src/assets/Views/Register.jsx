@@ -58,7 +58,7 @@ const Register = () => {
     const newErrors = {};
 
     if (!registerForm.first_name.trim()) {
-      newErrors.fist_name = 'Debes ingresar tu nombre';
+      newErrors.first_name = 'Debes ingresar tu nombre';
     }
     if (!registerForm.last_name.trim()) {
       newErrors.last_name = 'Debes ingresar tu apellido';
