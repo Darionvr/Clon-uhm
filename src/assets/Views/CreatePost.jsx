@@ -23,6 +23,44 @@ const CreatePost = () => {
     description: "",
   });
 
+  const edadOptions = [
+    { value: '0.25', label: '3 meses' },
+    { value: '0.33', label: '4 meses' },
+    { value: '0.41', label: '5 meses' },
+    { value: '0.5', label: '6 meses' },
+    { value: '0.58', label: '7 meses' },
+    { value: '0.67', label: '8 meses' },
+    { value: '0.75', label: '9 meses' },
+    { value: '0.83', label: '10 meses' },
+    { value: '0.91', label: '11 meses' },
+    { value: '1', label: '1 año' },
+    { value: '2', label: '2 años' },
+    { value: '3', label: '3 años' },
+    { value: '4', label: '4 años' },
+    { value: '5', label: '5 años' },
+    { value: '6', label: '6 años' },
+    { value: '7', label: '7 años' },
+    { value: '8', label: '8 años' },
+    { value: '9', label: '9 años' },
+    { value: '10', label: 'Más de 10 años' },
+  ];
+
+  const pesoOptions = [
+    { value: '0.8', label: '800 gr' },
+    { value: '0.9', label: '900 gr' },
+    { value: '1', label: '1 kg' },
+    { value: '2', label: '2 kg' },
+    { value: '3', label: '3 kg' },
+    { value: '4', label: '4 kg' },
+    { value: '5', label: '5 kg' },
+    { value: '6', label: '6 kg' },
+    { value: '7', label: '7 kg' },
+    { value: '8', label: '8 kg' },
+    { value: '9', label: '9 kg' },
+    { value: '10', label: 'Más de 10 kg' },
+  ];
+
+
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
 
@@ -114,64 +152,40 @@ const CreatePost = () => {
               <option value="Conejo">Conejo</option>
             </select>
             {errors.especie && (
-          <p className="form-error">
-            <img src="imgs/alert-icon.svg" alt="ícono alerta" /> {errors.especie}
-          </p>
-        )}
+              <p className="form-error">
+                <img src="imgs/alert-icon.svg" alt="ícono alerta" /> {errors.especie}
+              </p>
+            )}
           </div>
+
           <div className="input-group">
             <select name="edadAprox" value={form.edadAprox} onChange={handleChange}>
               <option value="">Ingresa edad aprox</option>
-              <option value="0.25">3 meses</option>
-              <option value="0.33">4 meses</option>
-              <option value="0.41">5 meses</option>
-              <option value="0.5">6 meses</option>
-              <option value="0.58">7 meses</option>
-              <option value="0.67">8 meses</option>
-              <option value="0.75">9 meses</option>
-              <option value="0.83">10 meses</option>
-              <option value="0.91">11 meses</option>
-              <option value="1">1 año</option>
-              <option value="2">2 años</option>
-              <option value="3">3 años</option>
-              <option value="4">4 años</option>
-              <option value="5">5 años</option>
-              <option value="6">6 años</option>
-              <option value="7">7 años</option>
-              <option value="8">8 años</option>
-              <option value="9">9 años</option>
-              <option value="10">Más de 10 años</option>
+              {edadOptions.map(({ value, label }) => (
+                <option key={value} value={value}>{label}</option>
+              ))}
             </select>
             {errors.edadAprox && (
-          <p className="form-error">
-            <img src="imgs/alert-icon.svg" alt="ícono alerta" /> {errors.edadAprox}
-          </p>
-        )}
+              <p className="form-error">
+                <img src="imgs/alert-icon.svg" alt="ícono alerta" /> {errors.edadAprox}
+              </p>
+            )}
           </div>
 
-
-          <div className="input-group" >
-            <select name="peso" placeholder="Ingresa el peso" value={form.peso} onChange={handleChange}>
+          <div className="input-group">
+            <select name="peso" value={form.peso} onChange={handleChange}>
               <option value="">Ingresa peso aprox</option>
-              <option value="0.8">800 gr</option>
-              <option value="0.9">900 gr</option>
-              <option value="1">1 kg</option>
-              <option value="2">2 kg</option>
-              <option value="3">3 kg</option>
-              <option value="4">4 kg</option>
-              <option value="5">5 kg</option>
-              <option value="6">6 kg</option>
-              <option value="7">7 kg</option>
-              <option value="8">8 kg</option>
-              <option value="9">9 kg</option>
-              <option value="10">Más de 10 kg</option>
+              {pesoOptions.map(({ value, label }) => (
+                <option key={value} value={value}>{label}</option>
+              ))}
             </select>
             {errors.peso && (
-          <p className="form-error">
-            <img src="imgs/alert-icon.svg" alt="ícono alerta" /> {errors.peso}
-          </p>
-        )}
+              <p className="form-error">
+                <img src="imgs/alert-icon.svg" alt="ícono alerta" /> {errors.peso}
+              </p>
+            )}
           </div>
+
           <div className="input-group" >
             <select name="sexo" value={form.sexo} onChange={handleChange}>
               <option value="">Sexo de la mascota</option>
@@ -179,10 +193,10 @@ const CreatePost = () => {
               <option value="Hembra">Hembra</option>
             </select>
             {errors.sexo && (
-          <p className="form-error">
-            <img src="imgs/alert-icon.svg" alt="ícono alerta" /> {errors.sexo}
-          </p>
-        )}
+              <p className="form-error">
+                <img src="imgs/alert-icon.svg" alt="ícono alerta" /> {errors.sexo}
+              </p>
+            )}
           </div>
           <div className="input-group">
             <select name="chip" value={form.chip} onChange={handleChange}>
@@ -191,10 +205,10 @@ const CreatePost = () => {
               <option value="No">No</option>
             </select>
             {errors.chip && (
-          <p className="form-error">
-            <img src="imgs/alert-icon.svg" alt="ícono alerta" /> {errors.chip}
-          </p>
-        )}
+              <p className="form-error">
+                <img src="imgs/alert-icon.svg" alt="ícono alerta" /> {errors.chip}
+              </p>
+            )}
           </div>
 
           <div className="input-group-photo" onClick={() => inputphoto.current?.click()}>
@@ -212,10 +226,10 @@ const CreatePost = () => {
               <span>Selecciona tu foto de perfil</span>
             )}
             {errors.foto && (
-          <p className="form-error">
-            <img src="imgs/alert-icon.svg" alt="ícono alerta" /> {errors.foto}
-          </p>
-        )}
+              <p className="form-error">
+                <img src="imgs/alert-icon.svg" alt="ícono alerta" /> {errors.foto}
+              </p>
+            )}
           </div>
 
           <div className="input-group">
@@ -226,10 +240,10 @@ const CreatePost = () => {
               onChange={handleChange}
             ></textarea>
             {errors.description && (
-          <p className="form-error">
-            <img src="imgs/alert-icon.svg" alt="ícono alerta" /> {errors.description}
-          </p>
-        )}
+              <p className="form-error">
+                <img src="imgs/alert-icon.svg" alt="ícono alerta" /> {errors.description}
+              </p>
+            )}
           </div>
 
           <button type="submit" className='melon-button'>

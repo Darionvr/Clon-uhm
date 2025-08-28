@@ -23,19 +23,12 @@ const Register = () => {
   })
 
   const datosForm = [
-    {
-      name: 'first_name', type: 'text', placeholder: 'Ingresa tu nombre',
-    }, {
-      name: 'last_name', type: 'text', placeholder: 'Ingresa tu apellido',
-    }, {
-      name: 'rut', type: 'text', placeholder: 'Ingresa tu RUT',
-    }, {
-      name: 'email', type: 'email', placeholder: 'Ingresa tu correo',
-    }, {
-      name: 'password', type: 'password', placeholder: 'Ingresa tu contraseña',
-    }, {
-      name: 'password2', type: 'password', placeholder: 'Re ingresa tu contraseña',
-    }
+    {name: 'first_name', type: 'text', placeholder: 'Ingresa tu nombre'},
+    {name: 'last_name', type: 'text', placeholder: 'Ingresa tu apellido'}, 
+    {name: 'rut', type: 'text', placeholder: 'Ingresa tu RUT'}, 
+    {name: 'email', type: 'email', placeholder: 'Ingresa tu correo'}, 
+    {name: 'password', type: 'password', placeholder: 'Ingresa tu contraseña'}, 
+    {name: 'password2', type: 'password', placeholder: 'Re ingresa tu contraseña'}
   ]
 
   const fileInputRef = useRef(null);
@@ -110,10 +103,10 @@ const Register = () => {
 
         <form id='register' action="" className='register-form' onSubmit={handleSubmit}>
           
-        {datosForm.map((dato) => (
+        {datosForm.map(({name, type, placeholder}) => (
            <div className="input-group">
-             <input name={dato.name} type={dato.type} value={registerForm[dato.name]} placeholder={dato.placeholder} onChange={handleChange} />
-              {errors[dato.name] && <p className='form-error'> <img src="imgs\alert-icon.svg" alt="ícono alerta" />{errors[dato.name]}  </p>}
+             <input name={name} type={type} value={registerForm[name]} placeholder={placeholder} onChange={handleChange} />
+              {errors[name] && <p className='form-error'> <img src="imgs\alert-icon.svg" alt="ícono alerta" />{errors[name]}  </p>}
            </div>
         ))}
           
