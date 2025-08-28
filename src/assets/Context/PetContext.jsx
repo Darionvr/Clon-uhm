@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
+import { UserContext } from '../Context/UserContext';
 
 export const PetsContext = createContext();
 
@@ -11,6 +12,7 @@ const PetsProvider = ({ children }) => {
   const [next, setNext] = useState(null);
   const [previous, setPrevious] = useState(null);
   const [filtros, setFiltros] = useState({ size: "", age: "", specie: "" });
+  const { token } = useContext(UserContext)
 
   const getPets = async () => {
     setLoading(true);
@@ -42,7 +44,7 @@ const PetsProvider = ({ children }) => {
       const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/pets/${id}`, {
         method: "DELETE",
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}` // o desde otro contexto
+          'Authorization': `Bearer ${token}` 
         },
       });
       if (res.ok) {
