@@ -2,13 +2,11 @@ import { useContext, useState } from 'react';
 import { UserContext } from '../Context/UserContext';
 import Mypost from '../Components/MyPost';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faXmark, faPencil } from '@fortawesome/free-solid-svg-icons';
-import { jwtDecode } from 'jwt-decode';
+import { faPencil } from '@fortawesome/free-solid-svg-icons';
 
 
 const Myprofile = () => {
-  const { currentUser, setCurrentUser, token } = useContext(UserContext);
-  const decoded = jwtDecode(token);
+  const { currentUser,token } = useContext(UserContext);
 
   const [misDatos, setMisDatos] = useState({
     first_name: currentUser.first_name || '',

@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFileCirclePlus, faPenToSquare } from '@fortawesome/free-solid-svg-icons'
+import { faFileCirclePlus} from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../Context/UserContext'

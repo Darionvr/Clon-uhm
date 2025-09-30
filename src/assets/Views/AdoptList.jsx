@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import Pagination from '../Components/Pagination';
 import { UserContext } from '../Context/UserContext';
 import PetCard from '../Components/PetCard';
@@ -6,7 +6,6 @@ import { PetsContext} from '../Context/PetContext';
 
 const AdoptList = () => {
 
-  const { token } = useContext(UserContext);
   const {
     animals,
     loading,

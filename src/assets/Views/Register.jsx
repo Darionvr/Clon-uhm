@@ -1,8 +1,7 @@
-import React, { useContext, useRef, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserPlus, faUpload } from '@fortawesome/free-solid-svg-icons'
 import HomeLogo from '../Icons/HomeIcon'
-import Home from './Home'
 import { UserContext } from '../Context/UserContext'
 import { useNavigate } from 'react-router-dom'
 

@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { useContext } from 'react';
 import { UserContext } from '../Context/UserContext'
 import { useNavigate } from 'react-router-dom'
@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom'
 
 const CreatePost = () => {
   const inputphoto = useRef(null);
-  const fileInputRef = useRef(null);
   const { token } = useContext(UserContext);
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});

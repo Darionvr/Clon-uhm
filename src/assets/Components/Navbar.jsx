@@ -3,7 +3,7 @@ import '../../App.css'
 import HomeLogo from "../Icons/HomeIcon"
 import PersonLogo from "../Icons/PersonIcon"
 import PawIcon from "../Icons/PawIcon"
-import { useContext, useEffect, useRef, useState } from "react"
+import { useContext, useEffect, useRef } from "react"
 import { faSquareXmark, faBars, faPeopleGroup, faHandHoldingHeart, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import LoginForm from "./LoginForm"
